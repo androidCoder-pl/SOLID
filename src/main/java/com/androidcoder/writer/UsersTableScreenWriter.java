@@ -8,13 +8,15 @@ import java.util.List;
 public class UsersTableScreenWriter implements UsersWriter {
 
     private UsersToStringConverter stringConverter;
+    private AlphanumericScreen alphanumericScreen;
 
-    public UsersTableScreenWriter(UsersToStringConverter userTable) {
+    public UsersTableScreenWriter(UsersToStringConverter userTable, AlphanumericScreen alphanumericScreen) {
         this.stringConverter = userTable;
+        this.alphanumericScreen = alphanumericScreen;
     }
 
     @Override
     public void writeData(List<User> usersData) {
-        System.out.println(stringConverter.toString(usersData));
+        alphanumericScreen.print(stringConverter.toString(usersData));
     }
 }
