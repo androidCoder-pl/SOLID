@@ -4,6 +4,8 @@ version '0.3'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
+apply plugin: "info.solidsoft.pitest"
+
 
 sourceCompatibility = 1.8
 
@@ -14,11 +16,30 @@ repositories {
 
 dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
+    testCompile 'junit:junit:4.12'
+    //library to test POJO class
+    testCompile 'com.openpojo:openpojo:0.8.13'
+    //library to test equals method in class
+    testCompile 'nl.jqno.equalsverifier:equalsverifier:2.4'
 }
 
 jar {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest { attributes 'Main-Class': 'com.androidcoder.Main' }
+}
+
+pitest {
+    targetClasses = ['com.androidcoder.*']  //by default "${project.group}.*"
+    outputFormats = ['XML', 'HTML']
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
+    }
 }
 
 

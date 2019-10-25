@@ -26,9 +26,9 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
+    final public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof User)) return false;
+        if (!(o instanceof User)) return false;
         User user = (User) o;
         return Objects.equals(getName(), user.getName()) &&
                 Objects.equals(getLastName(), user.getLastName()) &&
@@ -36,7 +36,7 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
+    final public int hashCode() {
         return Objects.hash(getName(), getLastName(), getId());
     }
 }
