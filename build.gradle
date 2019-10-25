@@ -1,0 +1,21 @@
+group 'com.androidcoder.solid'
+version '0.1'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest { attributes 'Main-Class': 'com.androidcoder.Main' }
+}
+
+
+mainClassName = 'com.androidcoder.Main'
