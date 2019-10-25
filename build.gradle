@@ -1,5 +1,5 @@
 group 'com.androidcoder.solid'
-version '0.2'
+version '0.3'
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -10,6 +10,10 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.8.2'
 }
 
 jar {

@@ -1,12 +1,17 @@
 package com.androidcoder.converter;
 
+import com.androidcoder.builder.StringTableBuilder;
 import com.androidcoder.model.User;
 
 import java.util.List;
 
-public class UserListTableConverter {
+public class UserListTableConverter implements UsersToStringConverter {
 
-    private StringTableBuilder stringTableBuilder = new StringTableBuilder();
+    private StringTableBuilder stringTableBuilder;
+
+    public UserListTableConverter(StringTableBuilder stringTableBuilder) {
+        this.stringTableBuilder = stringTableBuilder;
+    }
 
     public String toString(List<User> usersList) {
         convertToStringTable(usersList);

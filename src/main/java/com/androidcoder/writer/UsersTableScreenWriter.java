@@ -1,22 +1,20 @@
 package com.androidcoder.writer;
 
-import com.androidcoder.converter.UserListTableConverter;
+import com.androidcoder.converter.UsersToStringConverter;
 import com.androidcoder.model.User;
 
 import java.util.List;
 
-public class UsersTableScreenWriter {
-    public void writeTableOnScreen(List<User> usersData) {
-        String stringTable = convertUsersListToTable(usersData);
-        writeTableOnScreen(stringTable);
+public class UsersTableScreenWriter implements UsersWriter {
+
+    private UsersToStringConverter stringConverter;
+
+    public UsersTableScreenWriter(UsersToStringConverter userTable) {
+        this.stringConverter = userTable;
     }
 
-    private void writeTableOnScreen(String stringTable) {
-        System.out.println(stringTable);
-    }
-
-    private String convertUsersListToTable(List<User> usersData) {
-        UserListTableConverter userTable = new UserListTableConverter();
-        return userTable.toString(usersData);
+    @Override
+    public void writeData(List<User> usersData) {
+        System.out.println(stringConverter.toString(usersData));
     }
 }

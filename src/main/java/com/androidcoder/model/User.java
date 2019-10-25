@@ -1,9 +1,11 @@
 package com.androidcoder.model;
 
+import java.util.Objects;
+
 public class User {
-    private String name;
-    private String lastName;
-    private String id;
+    private final String name;
+    private final String lastName;
+    private final String id;
 
     public User(String name, String lastName, String id) {
         this.name = name;
@@ -23,4 +25,18 @@ public class User {
         return id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getName(), user.getName()) &&
+                Objects.equals(getLastName(), user.getLastName()) &&
+                Objects.equals(getId(), user.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getLastName(), getId());
+    }
 }

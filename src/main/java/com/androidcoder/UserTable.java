@@ -1,12 +1,19 @@
 package com.androidcoder;
 
-import com.androidcoder.datasource.UsersData;
-import com.androidcoder.writer.UsersTableScreenWriter;
+import com.androidcoder.data.UsersData;
+import com.androidcoder.writer.UsersWriter;
 
 public class UserTable {
-    public void printUserTableOnScreen() {
-        UsersData usersData = new UsersData();
-        UsersTableScreenWriter usersTableScreenWriter = new UsersTableScreenWriter();
-        usersTableScreenWriter.writeTableOnScreen(usersData.getUsers());
+
+    private UsersData usersData;
+    private UsersWriter writer;
+
+    public UserTable(UsersData usersData, UsersWriter writer) {
+        this.usersData = usersData;
+        this.writer = writer;
+    }
+
+    public void writeTableOnScreen() {
+        writer.writeData(usersData.getUsers());
     }
 }
